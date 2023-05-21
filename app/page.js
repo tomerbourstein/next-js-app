@@ -1,3 +1,5 @@
+"use client";
+import { useEffect, useState } from "react";
 import MeetupList from "../components/meetups/MeetupList";
 
 const DUMMY_MEETUP = [
@@ -28,7 +30,14 @@ const DUMMY_MEETUP = [
 ];
 
 const Home = () => {
-  return <MeetupList meetups={DUMMY_MEETUP} />;
+  const [loadedMeetups, setLoadedMeetups] = useState([]);
+
+  useEffect(() => {
+    // fetch the meetups from the databse.
+    setLoadedMeetups(DUMMY_MEETUP);
+  }, []);
+
+  return <MeetupList meetups={loadedMeetups} />;
 };
 
 export default Home;
